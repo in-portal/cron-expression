@@ -6,12 +6,15 @@ use Cron\DayOfWeekField;
 use Cron\MinutesField;
 use Cron\MonthField;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
 class AbstractFieldTest extends TestCase
 {
+    use ExpectException;
+
     /**
      * @covers \Cron\AbstractField::isRange
      */
@@ -97,7 +100,7 @@ class AbstractFieldTest extends TestCase
 
     public function testStepCannotBeLargerThanRange()
     {
-        $this->expectException(\OutOfRangeException::class);
+        $this->expectException('OutOfRangeException');
         $f = new MonthField();
         $f->isInIncrementsOfRanges('2', '3-12/13');
     }

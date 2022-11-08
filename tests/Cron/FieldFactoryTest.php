@@ -4,12 +4,15 @@ namespace Cron\Tests;
 
 use Cron\FieldFactory;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
 class FieldFactoryTest extends TestCase
 {
+    use ExpectException;
+
     /**
      * @covers \Cron\FieldFactory::getField
      */
@@ -32,10 +35,11 @@ class FieldFactoryTest extends TestCase
 
     /**
      * @covers \Cron\FieldFactory::getField
-     * @expectedException InvalidArgumentException
      */
     public function testValidatesFieldPosition()
     {
+        $this->expectException('InvalidArgumentException');
+
         $f = new FieldFactory();
         $f->getField(-1);
     }
