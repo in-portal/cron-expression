@@ -1,7 +1,7 @@
 PHP Cron Expression Parser
 ==========================
 
-[![Latest Stable Version](https://poser.pugx.org/mtdowling/cron-expression/v/stable.png)](https://packagist.org/packages/mtdowling/cron-expression) [![Total Downloads](https://poser.pugx.org/mtdowling/cron-expression/downloads.png)](https://packagist.org/packages/mtdowling/cron-expression) [![Build Status](https://secure.travis-ci.org/mtdowling/cron-expression.png)](http://travis-ci.org/mtdowling/cron-expression)
+[![Latest Stable Version](https://poser.pugx.org/mtdowling/cron-expression/v/stable.png)](https://packagist.org/packages/mtdowling/cron-expression) [![Total Downloads](https://poser.pugx.org/mtdowling/cron-expression/downloads.png)](https://packagist.org/packages/mtdowling/cron-expression) [![CI](https://github.com/in-portal/cron-expression/actions/workflows/tests.yml/badge.svg)](https://github.com/in-portal/cron-expression/actions/workflows/tests.yml)
 
 **NOTE** This fork has been deprecated and development moved to [https://github.com/dragonmantank/cron-expression](https://github.com/dragonmantank/cron-expression). More information can be found in the blog post [here](http://ctankersley.com/2017/10/12/cron-expression-update/). tl;dr - v2.0.0 is a major breaking change, and @dragonmantank can better take care of the project in a separate fork. 
 
