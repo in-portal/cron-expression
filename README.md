@@ -68,6 +68,6 @@ A CRON expression is a string representing the schedule for a particular command
 Requirements
 ============
 
-- PHP 7.0+
+- PHP 5.4+
 - PHPUnit is required to run the unit tests
 - Composer is required to run the unit tests

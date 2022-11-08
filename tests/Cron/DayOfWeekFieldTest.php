@@ -5,12 +5,15 @@ namespace Cron\Tests;
 use Cron\DayOfWeekField;
 use DateTime;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
 class DayOfWeekFieldTest extends TestCase
 {
+    use ExpectException;
+
     /**
      * @covers \Cron\DayOfWeekField::validate
      */
@@ -50,22 +53,24 @@ class DayOfWeekFieldTest extends TestCase
 
     /**
      * @covers \Cron\DayOfWeekField::isSatisfiedBy
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Weekday must be a value between 0 and 7. 12 given
      */
     public function testValidatesHashValueWeekday()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Weekday must be a value between 0 and 7. 12 given');
+
         $f = new DayOfWeekField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime(), '12#1'));
     }
 
     /**
      * @covers \Cron\DayOfWeekField::isSatisfiedBy
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage There are never more than 5 or less than 1 of a given weekday in a month
      */
     public function testValidatesHashValueNth()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('There are never more than 5 or less than 1 of a given weekday in a month');
+
         $f = new DayOfWeekField();
         $this->assertTrue($f->isSatisfiedBy(new DateTime(), '3#6'));
     }

@@ -7,12 +7,15 @@ use DateTime;
 use DateTimeZone;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @author Michael Dowling <mtdowling@gmail.com>
  */
 class CronExpressionTest extends TestCase
 {
+    use ExpectException;
+
     /**
      * @covers \Cron\CronExpression::factory
      */
@@ -46,11 +49,12 @@ class CronExpressionTest extends TestCase
      * @covers \Cron\CronExpression::__construct
      * @covers \Cron\CronExpression::getExpression
      * @covers \Cron\CronExpression::__toString
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Invalid CRON field value A at position 0
      */
     public function testParsesCronScheduleThrowsAnException()
     {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessage('Invalid CRON field value A at position 0');
+
         CronExpression::factory('A 1 2 3 4');
     }
 
@@ -88,20 +92,22 @@ class CronExpressionTest extends TestCase
      * @covers \Cron\CronExpression::__construct
      * @covers \Cron\CronExpression::setExpression
      * @covers \Cron\CronExpression::setPart
-     * @expectedException InvalidArgumentException
      */
     public function testInvalidCronsWillFail()
     {
+        $this->expectException('InvalidArgumentException');
+
         // Only four values
         $cron = CronExpression::factory('* * * 1');
     }
 
     /**
      * @covers \Cron\CronExpression::setPart
-     * @expectedException InvalidArgumentException
      */
     public function testInvalidPartsWillFail()
     {
+        $this->expectException('InvalidArgumentException');
+
         // Only four values
         $cron = CronExpression::factory('* * * * *');
         $cron->setPart(1, 'abc');
@@ -261,7 +267,7 @@ class CronExpressionTest extends TestCase
         $this->assertFalse($cron->isDue(new DateTime($date, $amsterdam), 'Asia/Tokyo'));
         $this->assertTrue($cron->isDue(new DateTime($date, $tokyo), 'Asia/Tokyo'));
     }
-    
+
     /**
      * @covers \Cron\CronExpression::getPreviousRunDate
      */
